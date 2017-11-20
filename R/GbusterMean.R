@@ -14,6 +14,12 @@
 
 
 GbusterMean <- function(mean, range, pct = .975, start) {
+  if (pct == 1) {
+    stop("You need to use a pct value less than 1 such as .999999.")
+  }
+  if (pct == 0) {
+    stop("You need to use a pct value greater than zero.")
+  }
   beta <- mean / (range / 4) ^ 2  # define a start value for beta
   alpha <-  beta * mean         # define a start value for alpha
   start = c(alpha, beta)             # starting values assembled

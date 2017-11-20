@@ -26,18 +26,26 @@
 #' @export
 
 GbusterMinMax <- function(lower, upper, pct=.95, start) {
-  if(upper < lower) {
-    warning("GblusterMinMax sees the lower bound exceeding the upper. Check your inputs.")
-  }
-  range <- upper - lower
-  mean <- (upper + lower)/2
-  beta <- mean / (range / 4)^2  # define a start value for beta
-  alpha <-  beta * mean         # define a start value for alpha
-  start <- c(alpha, beta)
-  GammaOpt <- function(start) {(lower - stats::qgamma((1-pct),start[1],start[2]))^2 +
-      (upper - stats::qgamma((pct),start[1],start[2]))^2
-  }
+    if (upper < lower) {
+      stop("GblusterMinMax sees the lower bound exceeding the upper. Check your inputs.")
+    }
+    if (pct == 1) {
+      stop("You need to use a pct value less than 1 such as .999999.")
+    }
+    if (pct == 0) {
+      stop("You need to use a pct value greater than zero.")
+    }
+    range <- upper - lower
+    mean <- (upper + lower) / 2
+    beta <- mean / (range / 4) ^ 2  # define a start value for beta
+    alpha <-  beta * mean         # define a start value for alpha
+    start <- c(alpha, beta)
+    GammaOpt <-
+      function(start) {
+        (lower - stats::qgamma((1 - pct) / 2, start[1], start[2])) ^ 2 +
+          (upper - stats::qgamma(pct + (1 - pct) / 2, start[1], start[2])) ^ 2
+      }
     solution <- stats::optim(start, GammaOpt)
-  return(solution)
-}
+    return(solution)
+  }
 

@@ -1,7 +1,7 @@
 Package: gammabuster
 Type: Package
 Title: Derive a gamma distribution from judgemental inputs
-Version: 0.1.0
+Version: 0.1.1
 Author: Brent Johnson
 Maintainer: Brent Johnson <brent@centralmoment.com>
 Description: Solves for the shape and scale parameters of a gamma distribution given judgemental inputs. 
