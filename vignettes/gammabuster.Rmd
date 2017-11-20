@@ -33,7 +33,7 @@ But the fact that both parameters, ($\alpha$) and ($\beta$), are used to define 
 
 The functions in this package take such easier-to-elicit judgmental inputs and translate them into the more numerically useful $\alpha$'s and $\beta$'s of a gamma distribution. The gamma distribution is appropriate for random variables believed to be continuous and strictly positive.  At higher mean values and with little variance, the gamma distribution is often approximated using a normal distribution.  However, at lower mean values and wider variances, a normal distribution would be inappropriate, Curious readers may appreciate that various [applets](http://homepage.divms.uiowa.edu/~mbognar/applets/gamma.html) exist to let one visually explore the effect of a gamma distribution's two parameters.
 
-# The GbusterMinMax function
+## The GbusterMinMax function
 
 The gammabuster package contains just two functions.  For example, suppose one wishes to make a judgement about an unknown quantity X. Suppose furthermore that one believes X to be continuous and strictly positive such that the gamma is a good candidate distribution. If one believes that X lies somewhere between the values of, say, 5 and 10 (and if one is somewhat confident in that judgement, e.g., p = .90), then one can "solve" for the gamma distribution using the GbusterMinMax() function as follows:
 
@@ -65,7 +65,7 @@ plot(
 
 Note that with these parameters, the above gamma distribution is skewed slightly to the right compared to a normal distribution having the same mean and standard deviation. In other words, the mean of the gamma is not at the midpoint of its range. Unlike the normal, a gamma distribution's mean does not equal its median or mode.
 
-# The GbusterMean function
+## The GbusterMean function
 
 Alternatively, suppose it's easier for our judge to articulate his estimate in terms of a specific mean and range instead.  For example, an expert might declare he believes that the unknown value of X lies within a gamma distribution having an exact mean of 7.5 and a range of 4 (i.e., roughly +/- 2 units on either side of the mean) with probability .90.  This problem is solved using the GbusterMean() function:
 
@@ -84,7 +84,7 @@ The functions in gammabuster work over a wide range of inputs. It's possible, ho
 judgement2 <- GbusterMean(7.5, 4, pct=.99, start=c(20,3))
 ```
 
-# Why the gammabuster package?
+## Why the gammabuster package?
 
 The gamma distribution is the Bayesian [conjugate prior](https://en.wikipedia.org/wiki/Conjugate_prior) to the Poisson. This makes gammabuster helpful for eliciting judgmental Bayesian priors. In other words, if one has a Poisson model with mean $\lambda$, one an use the gammabuster package to specify a gamma conjugate prior on $\lambda$ using judgmental inputs.  Making this more concrete and to carry the above example one step further, one could specify a prior belief that the mean $\lambda$ of a Poisson distribution has a 90% chance of lying between 5 and 10 as follow...
   \[
